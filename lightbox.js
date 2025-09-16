@@ -1,221 +1,224 @@
-// Lightbox sencillo con navegación y soporte PNG/SVG
+/**
+ * LIGHTBOX OPTIMIZADO PARA REVEAL.JS
+ * Evita conflictos con navegación de presentación
+ */
 
-(() => {
-  // Esperar a que el DOM esté completamente cargado
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLightbox);
-  } else {
-    initLightbox();
+class OptimizedLightbox {
+  constructor() {
+    this.isOpen = false;
+    this.currentImage = null;
+    this.overlay = null;
+    
+    this.init();
   }
 
-  function initLightbox() {
-    const thumbs = Array.from(document.querySelectorAll('.image-card img.zoomable'));
-    if (!thumbs.length) {
-      console.log('No se encontraron imágenes con clase .zoomable');
-      return;
-    }
+  init() {
+    // Crear overlay una sola vez
+    this.createOverlay();
+    
+    // Agregar event listeners
+    this.addEventListeners();
+    
+    // Prevenir conflictos con Reveal.js
+    this.setupRevealIntegration();
+  }
 
-    // Crear DOM del visor
-    const wrap = document.createElement('div');
-    wrap.className = 'lightbox';
-    wrap.innerHTML = `
-      <div class="lightbox__inner">
-        <div class="lightbox__media">
-          <img class="lightbox__img" alt="">
-        </div>
-        <div class="lightbox__caption"></div>
-      </div>
-      <button class="lightbox__close" aria-label="Cerrar">✕</button>
-      <button class="lightbox__prev" aria-label="Anterior">‹</button>
-      <button class="lightbox__next" aria-label="Siguiente">›</button>
+  createOverlay() {
+    this.overlay = document.createElement('div');
+    this.overlay.className = 'lightbox-overlay';
+    this.overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
     `;
-    document.body.appendChild(wrap);
 
-    const imgEl = wrap.querySelector('.lightbox__img');
-    const captionEl = wrap.querySelector('.lightbox__caption');
-    const btnClose = wrap.querySelector('.lightbox__close');
-    const btnPrev = wrap.querySelector('.lightbox__prev');
-    const btnNext = wrap.querySelector('.lightbox__next');
+    // Contenedor de imagen
+    const imageContainer = document.createElement('div');
+    imageContainer.style.cssText = `
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    `;
 
-    let idx = 0;
+    // Imagen principal
+    const img = document.createElement('img');
+    img.className = 'lightbox-image';
+    img.style.cssText = `
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    `;
 
-    // Función para abrir lightbox en imagen específica
-    function openAt(i) {
-      idx = i;
-      const t = thumbs[idx];
-      const full = t.dataset.full || t.src;
-      const caption = t.dataset.caption || t.alt || '';
+    // Caption
+    const caption = document.createElement('div');
+    caption.className = 'lightbox-caption';
+    caption.style.cssText = `
+      color: white;
+      text-align: center;
+      margin-top: 1rem;
+      padding: 0 2rem;
+      font-size: 1rem;
+      line-height: 1.4;
+      max-width: 800px;
+    `;
 
-      // Con SVG funciona igual usando <img src="...svg">
-      imgEl.src = full;
-      imgEl.alt = caption;
-      captionEl.textContent = caption;
-      wrap.classList.add('show');
-      
-      // Prevenir scroll del body mientras está abierto
-      document.body.style.overflow = 'hidden';
-      
-      // Focus para accesibilidad
-      btnClose.focus();
-    }
+    // Botón cerrar
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '×';
+    closeBtn.style.cssText = `
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    `;
 
-    // Función para cerrar lightbox
-    function close() { 
-      wrap.classList.remove('show'); 
-      document.body.style.overflow = '';
-    }
-    
-    // Navegación
-    function prev() { 
-      openAt((idx - 1 + thumbs.length) % thumbs.length); 
-    }
-    
-    function next() { 
-      openAt((idx + 1) % thumbs.length); 
-    }
+    closeBtn.addEventListener('mouseenter', () => {
+      closeBtn.style.background = 'rgba(255,255,255,0.3)';
+    });
 
-    // Configurar eventos de las miniaturas
-    thumbs.forEach((t, i) => {
-      // Click para abrir lightbox
-      t.addEventListener('click', () => openAt(i));
-      
-      // Función para ajustar orientación automática
-      const adjustOrientation = () => {
-        const card = t.closest('.image-card');
-        if (!card) return;
+    closeBtn.addEventListener('mouseleave', () => {
+      closeBtn.style.background = 'rgba(255,255,255,0.2)';
+    });
 
-        // Detectar imágenes verticales (móviles) - solo si no tiene clase portrait ya
-        if (t.naturalHeight > t.naturalWidth && !card.classList.contains('portrait')) {
-          card.classList.add('portrait');
-          console.log(`Imagen ${t.src} detectada como vertical, agregando clase 'portrait'`);
-        }
-        
-        // Detectar diagramas/SVG que deben mostrarse completos - solo si no tiene clase contain ya
-        if ((t.src.endsWith('.svg') || t.dataset.fit === 'contain') && !card.classList.contains('contain')) {
-          card.classList.add('contain');
-          console.log(`Imagen ${t.src} detectada como diagrama, agregando clase 'contain'`);
-        }
-      };
-      
-      // Si la imagen ya está cargada
-      if (t.complete && t.naturalWidth > 0) {
-        adjustOrientation();
-      } else {
-        // Si aún no está cargada, esperar al evento load
-        t.addEventListener('load', adjustOrientation);
-        
-        // Timeout de seguridad por si la imagen no carga
-        setTimeout(() => {
-          if (!t.complete) {
-            console.warn(`Imagen ${t.src} no se ha cargado completamente`);
-          }
-        }, 5000);
+    // Ensamblar
+    imageContainer.appendChild(img);
+    imageContainer.appendChild(caption);
+    this.overlay.appendChild(imageContainer);
+    this.overlay.appendChild(closeBtn);
+    document.body.appendChild(this.overlay);
+
+    // Event listeners para cerrar
+    closeBtn.addEventListener('click', () => this.close());
+    this.overlay.addEventListener('click', (e) => {
+      if (e.target === this.overlay) this.close();
+    });
+  }
+
+  addEventListeners() {
+    // Delegar eventos para imágenes con clase 'zoomable'
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('zoomable')) {
+        e.preventDefault();
+        e.stopPropagation(); // Evitar que Reveal.js capture el click
+        this.open(e.target);
       }
-
-      // Mejorar accesibilidad
-      t.setAttribute('tabindex', '0');
-      t.setAttribute('role', 'button');
-      t.setAttribute('aria-label', `Ver imagen en grande: ${t.alt || 'Imagen ' + (i + 1)}`);
-      
-      // Soporte para teclado en miniaturas
-      t.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openAt(i);
-        }
-      });
     });
 
-    // Eventos de controles del lightbox
-    btnClose.addEventListener('click', close);
-    btnPrev.addEventListener('click', prev);
-    btnNext.addEventListener('click', next);
-    
-    // Cerrar al hacer click en el fondo
-    wrap.addEventListener('click', (e) => { 
-      if (e.target === wrap) close(); 
-    });
-
-    // Navegación por teclado (mejorada)
+    // Tecla ESC para cerrar
     document.addEventListener('keydown', (e) => {
-      if (!wrap.classList.contains('show')) return;
-      
-      switch(e.key) {
-        case 'Escape':
-          close();
-          break;
-        case 'ArrowLeft':
-          prev();
-          break;
-        case 'ArrowRight':
-          next();
-          break;
-        case 'Home':
-          openAt(0);
-          break;
-        case 'End':
-          openAt(thumbs.length - 1);
-          break;
-      }
-    });
-
-    // Integración con Reveal.js - cerrar lightbox al cambiar de slide
-    if (window.Reveal) {
-      Reveal.on('slidechanged', () => { 
-        if (wrap.classList.contains('show')) {
-          close();
-          console.log('Lightbox cerrado por cambio de slide en Reveal.js');
-        }
-      });
-    }
-
-    // Soporte para gestos touch en móviles
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    wrap.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    wrap.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-      const swipeThreshold = 50;
-      const diff = touchStartX - touchEndX;
-      
-      if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-          next(); // Swipe left = siguiente
-        } else {
-          prev(); // Swipe right = anterior
-        }
-      }
-    }
-
-    // Manejar redimensionamiento de ventana
-    window.addEventListener('resize', () => {
-      if (wrap.classList.contains('show')) {
-        // Reajustar el lightbox si está abierto
-        const currentImg = imgEl;
-        if (currentImg.src) {
-          // Forzar recalculo de dimensiones
-          currentImg.style.maxWidth = '90vw';
-          currentImg.style.maxHeight = '80vh';
-        }
-      }
-    });
-
-    // Log para debug
-    console.log(`Lightbox inicializado con ${thumbs.length} imágenes zoomables`);
-    
-    // Verificar que todas las imágenes tienen las clases necesarias
-    thumbs.forEach((img, index) => {
-      if (!img.classList.contains('zoomable')) {
-        console.warn(`Imagen ${index + 1} no tiene clase 'zoomable':`, img.src);
+      if (e.key === 'Escape' && this.isOpen) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.close();
       }
     });
   }
-})();
+
+  setupRevealIntegration() {
+    // Pausar Reveal.js cuando lightbox esté abierto
+    document.addEventListener('keydown', (e) => {
+      if (this.isOpen) {
+        // Bloquear navegación de Reveal.js cuando lightbox está abierto
+        if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space'].includes(e.code)) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    }, true); // Captura en fase de captura
+  }
+
+  open(imgElement) {
+    if (this.isOpen) return;
+
+    this.isOpen = true;
+    this.currentImage = imgElement;
+
+    // Actualizar imagen en lightbox
+    const lightboxImg = this.overlay.querySelector('.lightbox-image');
+    const lightboxCaption = this.overlay.querySelector('.lightbox-caption');
+
+    lightboxImg.src = imgElement.src;
+    lightboxImg.alt = imgElement.alt;
+
+    // Usar data-caption si existe, sino usar alt
+    const captionText = imgElement.getAttribute('data-caption') || imgElement.alt;
+    lightboxCaption.textContent = captionText;
+
+    // Mostrar overlay con animación
+    this.overlay.style.display = 'flex';
+    this.overlay.style.opacity = '0';
+    
+    requestAnimationFrame(() => {
+      this.overlay.style.transition = 'opacity 0.3s ease';
+      this.overlay.style.opacity = '1';
+    });
+
+    // Prevenir scroll del body
+    document.body.style.overflow = 'hidden';
+
+    // Notificar a Reveal.js que pause la presentación
+    if (window.Reveal) {
+      window.Reveal.configure({ keyboard: false });
+    }
+  }
+
+  close() {
+    if (!this.isOpen) return;
+
+    this.isOpen = false;
+
+    // Animar salida
+    this.overlay.style.transition = 'opacity 0.3s ease';
+    this.overlay.style.opacity = '0';
+
+    setTimeout(() => {
+      this.overlay.style.display = 'none';
+      
+      // Restaurar scroll del body
+      document.body.style.overflow = '';
+
+      // Reactivar Reveal.js
+      if (window.Reveal) {
+        window.Reveal.configure({ keyboard: true });
+      }
+    }, 300);
+  }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+  new OptimizedLightbox();
+});
+
+// También inicializar si Reveal.js ya está cargado
+if (window.Reveal) {
+  Reveal.addEventListener('ready', () => {
+    if (!window.lightboxInstance) {
+      window.lightboxInstance = new OptimizedLightbox();
+    }
+  });
+}
