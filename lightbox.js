@@ -1,4 +1,4 @@
-/**
+﻿/**
  * LIGHTBOX OPTIMIZADO PARA PRESENTACIÓN MALEJA CALZADO
  * Compatible con Reveal.js y diseño visual consistente
  */
@@ -30,7 +30,7 @@ class PresentationLightbox {
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(44, 62, 80, 0.95);
+      background: rgba(26, 26, 26, 0.96); /* Negro principal */
       z-index: 9999;
       display: none;
       justify-content: center;
@@ -52,10 +52,10 @@ class PresentationLightbox {
       align-items: center;
       padding: 2rem;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.98); /* Fondo blanco casi sólido */
       backdrop-filter: blur(10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 40px rgba(212, 170, 58, 0.18); /* Sombra dorada MALEJA */
+      border: 2px solid #d4aa3a; /* Borde dorado MALEJA */
     `;
 
     // Imagen principal
@@ -66,7 +66,7 @@ class PresentationLightbox {
       max-height: 75vh;
       object-fit: contain;
       border-radius: 8px;
-      box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
+      box-shadow: 0 8px 25px rgba(212, 170, 58, 0.18); /* Sombra dorada MALEJA */
       transition: transform 0.3s ease;
     `;
 
@@ -74,7 +74,7 @@ class PresentationLightbox {
     const caption = document.createElement('div');
     caption.className = 'lightbox-caption';
     caption.style.cssText = `
-      color: #2c3e50;
+      color: #d4aa3a; /* Dorado MALEJA */
       text-align: center;
       margin-top: 1.5rem;
       padding: 0 1rem;
@@ -83,6 +83,7 @@ class PresentationLightbox {
       line-height: 1.5;
       max-width: 600px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-shadow: 0 2px 8px rgba(26,26,26,0.08);
     `;
 
     // Botón cerrar mejorado
@@ -98,7 +99,7 @@ class PresentationLightbox {
       position: absolute;
       top: -10px;
       right: -10px;
-      background: #e74c3c;
+      background: #25d366; /* Verde WhatsApp */
       border: none;
       color: white;
       width: 40px;
@@ -109,21 +110,22 @@ class PresentationLightbox {
       align-items: center;
       justify-content: center;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.18); /* Sombra verde */
       z-index: 10001;
+      border: 2px solid #d4aa3a; /* Borde dorado */
     `;
 
     // Hover effects para el botón
     closeBtn.addEventListener('mouseenter', () => {
       closeBtn.style.transform = 'scale(1.1)';
-      closeBtn.style.background = '#c0392b';
-      closeBtn.style.boxShadow = '0 6px 20px rgba(231, 76, 60, 0.4)';
+      closeBtn.style.background = '#d4aa3a'; /* Dorado MALEJA */
+      closeBtn.style.boxShadow = '0 6px 20px rgba(212, 170, 58, 0.25)';
     });
 
     closeBtn.addEventListener('mouseleave', () => {
       closeBtn.style.transform = 'scale(1)';
-      closeBtn.style.background = '#e74c3c';
-      closeBtn.style.boxShadow = '0 4px 12px rgba(231, 76, 60, 0.3)';
+      closeBtn.style.background = '#25d366'; /* Verde WhatsApp */
+      closeBtn.style.boxShadow = '0 4px 12px rgba(37, 211, 102, 0.18)';
     });
 
     // Ensamblar elementos
@@ -200,7 +202,7 @@ class PresentationLightbox {
         max-height: 800px;
         object-fit: contain;
         border-radius: 8px;
-        box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
+        box-shadow: 0 8px 25px rgba(212, 170, 58, 0.18); /* Sombra dorada */
         transition: transform 0.3s ease;
         background: white;
         padding: 1rem;
@@ -212,7 +214,7 @@ class PresentationLightbox {
         max-height: 75vh;
         object-fit: contain;
         border-radius: 8px;
-        box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
+        box-shadow: 0 8px 25px rgba(212, 170, 58, 0.18); /* Sombra dorada */
         transition: transform 0.3s ease;
       `;
     }

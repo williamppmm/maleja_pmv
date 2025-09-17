@@ -1,15 +1,16 @@
 ﻿/* ===================================== */
-/* STYLES MÍNIMOS - SOLO CENTRADO */
+/* STYLES MÍNIMOS - SOLO CENTRADO CON COLORES MALEJA */
 /* ===================================== */
 
-/* Variables básicas */
+/* Variables básicas actualizadas con colores del PMV MALEJA */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --success-color: #27ae60;
-    --text-secondary: #7f8c8d;
-    --text-muted: #95a5a6;
+    /* Colores principales extraídos del PMV */
+    --primary-color: #1a1a1a;        /* Negro principal (texto) */
+    --secondary-color: #d4aa3a;      /* Dorado MALEJA */
+    --accent-color: #25d366;         /* Verde WhatsApp */
+    --success-color: #25d366;        /* Verde para elementos exitosos */
+    --text-secondary: #6c757d;       /* Gris para texto secundario */
+    --text-muted: #adb5bd;          /* Gris claro para texto tenue */
     --radius: 8px;
     --radius-lg: 12px;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -23,7 +24,7 @@
 
 .reveal {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, #f5f3f0 0%, #f0ede8 100%);
     color: var(--primary-color);
 }
 
@@ -155,7 +156,7 @@
 }
 
 .highlight-box {
-    background: linear-gradient(135deg, #e8f4f8, #d4edda);
+    background: linear-gradient(135deg, rgba(212, 170, 58, 0.1), rgba(37, 211, 102, 0.05));
     padding: 1.2rem;
     border-radius: var(--radius);
     border-left: 4px solid var(--secondary-color);
@@ -172,6 +173,14 @@
 
 /* ===================================== */
 /* LAYOUTS BÁSICOS */
+/* Centrado vertical y horizontal para imágenes en grid */
+.centered-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
 /* ===================================== */
 
 .grid-2 {
@@ -179,7 +188,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin-top: 1.5rem;
-    align-items: start;
+    align-items: stretch; /* Fuerza que ambos contenedores tengan la misma altura */
 }
 
 .grid-3 {
@@ -190,7 +199,7 @@
 }
 
 .box {
-    background: rgba(248, 249, 250, 0.8);
+    background: rgba(250, 247, 244, 0.9);
     padding: 1.5rem;
     border-radius: var(--radius);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -201,10 +210,11 @@
 .box:hover {
     transform: translateY(-1px);
     box-shadow: var(--shadow-lg);
+    border-color: var(--secondary-color);
 }
 
 .highlight-box {
-    background: linear-gradient(135deg, #e8f4f8, #d4edda);
+    background: linear-gradient(135deg, rgba(212, 170, 58, 0.1), rgba(37, 211, 102, 0.05));
     padding: 1.2rem;
     border-radius: var(--radius);
     border-left: 4px solid var(--secondary-color);
@@ -232,6 +242,9 @@
     max-width: 100%;
     transition: var(--transition);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .image-card:hover {
@@ -240,10 +253,13 @@
 }
 
 .image-card img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
     height: auto;
     border-radius: var(--radius);
     transition: var(--transition);
+    display: block;
 }
 
 .zoomable {
@@ -354,7 +370,7 @@
 .opening-slide {
     background: rgba(255, 255, 255, 0.98) !important;
     color: var(--primary-color) !important;
-    border: 2px solid #e3f2fd !important;
+    border: 2px solid rgba(212, 170, 58, 0.3) !important;
 }
 
 .opening-slide .slide-wrapper {
@@ -376,25 +392,25 @@
     line-height: 1.4;
 }
 
-/* Animación del logo SENA */
+/* Animación del logo SENA con colores MALEJA */
 @keyframes logoGlowPulse {
     0% {
-        filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.4));
+        filter: drop-shadow(0 0 8px rgba(212, 170, 58, 0.4));
         transform: scale(1) rotate(0deg);
     }
     50% {
-        filter: drop-shadow(0 0 16px rgba(52, 152, 219, 0.6));
+        filter: drop-shadow(0 0 16px rgba(212, 170, 58, 0.6));
         transform: scale(1.05) rotate(1deg);
     }
     100% {
-        filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.4));
+        filter: drop-shadow(0 0 8px rgba(212, 170, 58, 0.4));
         transform: scale(1) rotate(0deg);
     }
 }
 
 .logo-sena {
     animation: logoGlowPulse 3s ease-in-out infinite;
-    max-width: 250px;
+    max-width: 350px;
     height: auto;
     margin: 1.5rem auto;
     transition: var(--transition);
@@ -409,7 +425,7 @@
 .hero-section {
     background: rgba(255, 255, 255, 0.98) !important;
     color: var(--primary-color) !important;
-    border: 2px solid #e8f4f8 !important;
+    border: 2px solid rgba(212, 170, 58, 0.3) !important;
 }
 
 .hero__content {
@@ -456,8 +472,8 @@
 }
 
 .tag {
-    background: linear-gradient(135deg, var(--secondary-color), #2980b9);
-    color: white;
+    background: linear-gradient(135deg, var(--secondary-color), #b8941f);
+    color: var(--primary-color);
     padding: 0.4rem 0.8rem;
     border-radius: 15px;
     font-size: 0.85rem;
@@ -467,24 +483,29 @@
 
 /* Demo Section - expandir y mostrar botones */
 .demo-section {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+    background: linear-gradient(135deg, #f5f3f0, #f0ede8) !important;
 }
 
 .demo-wrapper {
     background: white;
     border-radius: var(--radius);
-    padding: 0.5rem;
+    padding: 1rem;
     box-shadow: var(--shadow-lg);
-    margin: 1rem 0;
-    width: 100%;
+    margin: 1rem auto;
+    width: 90%;
+    border: 2px solid var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .demo {
     width: 100%;
+    max-width: 1100px;
     height: 50vh;
     border: none;
     border-radius: var(--radius);
-    display: block;
+    margin: 0 auto;
 }
 
 .demo-actions {
@@ -492,11 +513,12 @@
     margin-top: 1rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
 }
 
-.btn, .btn-outline {
+.btn, .btn-outline, .btn-whatsapp {
     display: inline-block;
     padding: 0.8rem 1.5rem;
     border-radius: var(--radius);
@@ -505,31 +527,39 @@
     font-size: 1rem;
     transition: var(--transition);
     cursor: pointer;
+    border: 2px solid transparent;
 }
 
+/* Botón dorado principal - idéntico al "Ver Productos" del home */
 .btn {
-    background: linear-gradient(135deg, var(--secondary-color), #2980b9);
-    color: white;
+    background: linear-gradient(135deg, #d4aa3a, #e8c455) !important;
+    color: #1a1a1a !important;
     box-shadow: var(--shadow);
-    border: none;
+    border: 2px solid #d4aa3a !important;
 }
 
 .btn:hover {
-    background: linear-gradient(135deg, #2980b9, var(--secondary-color));
+    background: linear-gradient(135deg, #e8c455, #d4aa3a) !important;
+    color: #1a1a1a !important;
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
+    border-color: #b8941f !important;
 }
 
-.btn-outline {
-    background: transparent;
-    color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
+/* Botón verde WhatsApp - idéntico al "Pedir por WhatsApp" del home */
+.btn-outline, .btn-whatsapp {
+    background: linear-gradient(135deg, #25d366, #20c75a) !important;
+    color: white !important;
+    border: 2px solid #25d366 !important;
+    box-shadow: var(--shadow);
 }
 
-.btn-outline:hover {
-    background: var(--secondary-color);
-    color: white;
+.btn-outline:hover, .btn-whatsapp:hover {
+    background: linear-gradient(135deg, #20c75a, #1aab56) !important;
+    color: white !important;
     transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: #1aab56 !important;
 }
 
 /* Slide final - centrar contenido */
@@ -575,10 +605,10 @@
 .kpi {
     text-align: center;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    background: linear-gradient(135deg, #ffffff, #f5f3f0);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    border: 2px solid rgba(220, 220, 220, 0.5);
+    border: 2px solid rgba(212, 170, 58, 0.2);
     transition: var(--transition);
 }
 
@@ -590,7 +620,7 @@
 .kpi .v {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--success-color);
+    color: var(--secondary-color);
     margin-bottom: 0.5rem;
 }
 
@@ -610,8 +640,8 @@
 }
 
 .tech-badge {
-    background: linear-gradient(135deg, var(--secondary-color), #2980b9);
-    color: white;
+    background: linear-gradient(135deg, var(--secondary-color), #b8941f);
+    color: var(--primary-color);
     padding: 0.4rem 0.8rem;
     border-radius: 15px;
     font-size: 0.85rem;
@@ -640,7 +670,7 @@
     left: 0;
     top: 0;
     background: var(--secondary-color);
-    color: white;
+    color: var(--primary-color);
     width: 1.8rem;
     height: 1.8rem;
     border-radius: 50%;
@@ -657,7 +687,7 @@
 }
 
 .ok {
-    color: var(--success-color);
+    color: var(--accent-color);
 }
 
 /* ===================================== */
