@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Reveal.js (CDN) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.2/reveal.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.2/theme/black.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
   
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,21 +20,34 @@
 <div class="slides">
 
 <!-- ======================================= -->
-<!-- PORTADA -->
+<!-- INTRO SENA -->
 <!-- ======================================= -->
-<section class="hero-section" data-background-gradient="linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)">
+<section class="opening-slide" data-transition="fade">
+  <div class="slide-wrapper opening-wrapper">
+    <h2 class="opening-title">Tecnología en Análisis y Desarrollo de Software</h2>
+    <p class="opening-subtitle">PMV — MALEJA Calzado</p>
+    <div class="opening-logo">
+      <img src="https://i.ibb.co/rfFj44h8/logo-sena-2025.png" 
+           alt="Logo SENA"
+           class="logo-sena"
+           width="200" height="200"
+           loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 1: PORTADA -->
+<!-- ======================================= -->
+<section class="hero-section" data-transition="fade" data-background-gradient="linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)">
   <div class="hero__content">
-    
-    <!-- Columna izquierda: logo centrado -->
     <div class="hero-left">
-      <img src="assets/images/logo.png" 
+      <img src="assets/images/logo.png"
           alt="Logo MALEJA Calzado"
           class="hero-logo"
           width="800" height="400"
           loading="lazy" decoding="async">
     </div>
-
-    <!-- Columna derecha: título y tags -->
     <div class="hero-right">
       <div class="hero-text">
         <h1>MALEJA <span>Calzado</span></h1>
@@ -47,12 +60,11 @@
         <span class="tag">En producción</span>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- ======================================= -->
-<!-- 1) DESCRIPCIÓN DEL EMPRENDIMIENTO -->
+<!-- SLIDE 2: Descripción del emprendimiento (Parte 1) -->
 <!-- ======================================= -->
 <section>
   <h2>1. Descripción del emprendimiento</h2>
@@ -60,54 +72,82 @@
     <div class="box">
       <h3>MALEJA Calzado</h3>
       <p><strong>¿En qué consiste?</strong></p>
-      <p>Emprendimiento familiar de calzado femenino que vende principalmente por WhatsApp e Instagram. Problema identificado: catálogos desordenados, respuestas lentas y falta de presencia web profesional que genera pérdida de ventas.</p>
-      <div class="highlight-box">
-        <p><strong>Producto estrella:</strong> Plataforma web de catálogo integrada con WhatsApp Business para convertir navegación en contactos directos con mensajes prellenados.</p>
-      </div>
+      <p>Emprendimiento familiar de calzado femenino que vende principalmente por WhatsApp e Instagram.</p>
+      <p>Problema: catálogos desordenados, respuestas lentas y falta de presencia web profesional que genera pérdida de ventas.</p>
     </div>
-    <div class="media-col">
-      <div class="image-card" data-ar="3:2">
-        <img 
-          src="assets/images/tarjeta1.png" 
-          alt="Tarjeta de presentación MALEJA Calzado" 
-          class="zoomable"
-          data-caption="Tarjeta de presentación real con códigos QR para WhatsApp, Instagram y sitio web - diseño profesional"
-          width="1200" height="800"
-          loading="lazy" decoding="async">
-      </div>
-      <p class="caption">Tarjeta de presentación real con códigos QR funcionales</p>
+    <div class="box">
+      <h3>Solución</h3>
+      <p>Presencia web profesional enfocada en conversión directa a WhatsApp con contenido organizado y accesible desde móvil.</p>
     </div>
   </div>
 </section>
 
 <!-- ======================================= -->
-<!-- 2) DISEÑO Y DESCRIPCIÓN DEL PRODUCTO -->
+<!-- SLIDE 3: Descripción del emprendimiento (Parte 2) -->
 <!-- ======================================= -->
 <section>
-  <h2>2. Diseño y descripción del producto estrella</h2>
+  <h2>1. Descripción del emprendimiento (cont.)</h2>
   <div class="grid-2">
-    <div class="media-col">
-      <div class="image-card" data-ar="2:1">
-        <img 
-          src="assets/images/responsive.png" 
-          alt="Sitio web MALEJA Calzado responsive" 
-          class="zoomable"
-          data-caption="Diseño responsive adaptable a móvil y desktop - catálogo optimizado para conversión"
-          width="1600" height="800"
-          loading="lazy" decoding="async">
-      </div>
-      <p class="caption">Diseño responsive adaptable a móvil y desktop</p>
+    <div class="box">
+      <h3>Producto estrella</h3>
+      <p>Plataforma web de catálogo integrada con WhatsApp Business para convertir navegación en contactos directos con mensajes prellenados.</p>
     </div>
     <div class="box">
-      <h3>Descripción técnica y funcional</h3>
-      <p><strong>¿Qué hace?</strong></p>
+      <div class="highlight-box">
+        <strong>Objetivo del PMV:</strong> validar que el flujo "navegación → WhatsApp" aumenta contactos y reduce fricción.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 4: Imagen — Tarjeta de presentación -->
+<!-- ======================================= -->
+<section>
+  <h2>Tarjeta de presentación</h2>
+  <div class="block-center">
+    <div class="image-card" data-ar="3:2">
+      <img src="assets/images/tarjeta1.png"
+          alt="Tarjeta de presentación MALEJA Calzado"
+          class="zoomable"
+          data-caption="Tarjeta de presentación real con códigos QR funcionales"
+          width="1200" height="800"
+          loading="lazy" decoding="async">
+    </div>
+    <p class="caption">Tarjeta real con QR hacia WhatsApp e Instagram</p>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 5: Diseño y descripción del producto (Qué hace) -->
+<!-- ======================================= -->
+<section>
+  <h2>2. Diseño y descripción del producto</h2>
+  <div class="grid-2">
+    <div class="box">
+      <h3>¿Qué hace?</h3>
       <ul>
         <li>Catálogo web responsive con filtros, búsqueda y paginación</li>
         <li>Ficha de producto con galería y botón WhatsApp directo</li>
         <li>Panel administrativo con CRUD para autogestión</li>
         <li>Mensajes WhatsApp prellenados por producto</li>
       </ul>
-      <p><strong>¿Qué lo hace diferente?</strong></p>
+    </div>
+    <div class="box">
+      <h3>Enfoque mobile-first</h3>
+      <p>Contenido, navegación y tiempos de carga optimizados para usuarios móviles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 6: Diseño y descripción del producto (Diferenciadores) -->
+<!-- ======================================= -->
+<section>
+  <h2>2. Diseño y descripción del producto (cont.)</h2>
+  <div class="grid-2">
+    <div class="box">
+      <h3>¿Qué lo hace diferente?</h3>
       <ul>
         <li>Enfoque en microempresas locales (Cali)</li>
         <li>Conversión directa a WhatsApp (no e-commerce tradicional)</li>
@@ -115,11 +155,34 @@
         <li>Capacitación y soporte incluido</li>
       </ul>
     </div>
+    <div class="box">
+      <div class="highlight-box">
+        <strong>Hipótesis clave:</strong> Menos pasos = más conversaciones reales con clientes.
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ======================================= -->
-<!-- 3) IMPLEMENTACIÓN TÉCNICA (ADSO) -->
+<!-- SLIDE 7: Imagen — Diseño responsive -->
+<!-- ======================================= -->
+<section>
+  <h2>Diseño responsive</h2>
+  <div class="block-center">
+    <div class="image-card" data-ar="2:1">
+      <img src="assets/images/responsive.png"
+          alt="Sitio web MALEJA Calzado responsive"
+          class="zoomable"
+          data-caption="Diseño responsive adaptable a móvil y desktop"
+          width="1600" height="800"
+          loading="lazy" decoding="async">
+    </div>
+    <p class="caption">Adaptable a móvil y desktop</p>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 8: Implementación técnica (Stack/Perf/Seguridad) -->
 <!-- ======================================= -->
 <section>
   <h2>3. Implementación técnica (Competencias ADSO)</h2>
@@ -134,196 +197,238 @@
         <span class="tech-badge">SSL</span>
       </div>
       <ul>
-        <li><strong>Backend:</strong> PHP 8 + MySQL con PDO preparado</li>
-        <li><strong>Frontend:</strong> JavaScript vanilla + CSS responsive</li>
-        <li><strong>Seguridad:</strong> password_hash, variables .env, sanitización</li>
-        <li><strong>Performance:</strong> Lazy loading, imágenes ≤200KB</li>
+        <li><strong>Backend:</strong> PHP 8 + MySQL (PDO preparado)</li>
+        <li><strong>Frontend:</strong> JS vanilla + CSS responsive</li>
+        <li><strong>Performance:</strong> Lazy loading, imágenes ≤ 200KB</li>
       </ul>
     </div>
     <div class="box">
-      <h3>Arquitectura del sistema</h3>
+      <h3>Seguridad</h3>
+      <ul>
+        <li>password_hash</li>
+        <li>Variables <code>.env</code></li>
+        <li>Sanitización de entrada</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 9: Implementación técnica (Arquitectura/Hosting/SEO) -->
+<!-- ======================================= -->
+<section>
+  <h2>3. Implementación técnica (cont.)</h2>
+  <div class="grid-2">
+    <div class="box">
+      <h3>Arquitectura</h3>
       <ul>
         <li>Separación de responsabilidades (MVC adaptado)</li>
         <li>Panel administrativo con autenticación segura</li>
         <li>Diseño mobile-first responsive</li>
-        <li>SEO básico y accesibilidad (alt, aria-label)</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>SEO/Hosting</h3>
+      <ul>
+        <li>SEO básico y accesibilidad (<code>alt</code>, <code>aria-label</code>)</li>
         <li>Hosting en Hostinger con dominio propio</li>
       </ul>
     </div>
   </div>
+</section>
 
+<!-- ======================================= -->
+<!-- SLIDE 10: Imagen — Arquitectura del sistema -->
+<!-- ======================================= -->
+<section>
+  <h2>Diagrama de arquitectura del sistema</h2>
   <div class="block-center">
-    <div class="image-card contain" data-ar="1:1">
-      <img 
-        src="assets/images/arquitectura.svg"
-        alt="Diagrama de arquitectura del sistema"
-        class="zoomable"
-        data-caption="Diagrama de arquitectura del sistema: Frontend, Backend PHP, MySQL e integración con WhatsApp Business"
-        data-fit="contain"
-        width="960" height="960"
-        loading="lazy" decoding="async">
+    <div class="image-card contain" data-ar="2:3">
+      <img src="assets/images/arquitectura.svg"
+          alt="Diagrama de arquitectura del sistema"
+          class="zoomable"
+          data-caption="Frontend, Backend PHP, MySQL e integración con WhatsApp Business"
+          data-fit="contain"
+          width="960" height="960"
+          loading="lazy" decoding="async">
     </div>
-    <p class="caption">Diagrama de arquitectura del sistema</p>
+    <p class="caption">Arquitectura del sistema</p>
   </div>
 </section>
 
 <!-- ======================================= -->
-<!-- 4) DESARROLLO DEL PROYECTO PRODUCTIVO -->
+<!-- SLIDE 11: Desarrollo del proyecto (Metodología 8 fases) -->
 <!-- ======================================= -->
 <section>
   <h2>4. Desarrollo del proyecto productivo</h2>
-  <p class="lead"><strong>Programa:</strong> Tecnología en Análisis y Desarrollo de Software (ADSO)</p>
-  <div class="grid-2">
-    <div class="box">
-      <h3>Metodología aplicada (8 fases)</h3>
-      <ol class="ol-comfy">
-        <li>Levantamiento de requisitos con MALEJA</li>
-        <li>Diseño UX/UI mobile-first</li>
-        <li>Setup técnico (dominio/hosting/SSL/BD)</li>
-        <li>Desarrollo iterativo (catálogo → admin → WhatsApp)</li>
-        <li>Pruebas funcionales y de usabilidad</li>
-        <li>Carga inicial de productos y contenido</li>
-        <li>Despliegue en producción + capacitación</li>
-        <li>Medición inicial y ajustes rápidos</li>
-      </ol>
-    </div>
-    <div class="media-col">
-      <div class="image-card contain portrait" data-ar="2:3">
-        <img 
-          src="assets/images/metodologia-adso.svg" 
-          alt="Diagrama de flujo metodología ADSO" 
+  <p class="lead"><strong>Programa:</strong> Tecnología en ADSO</p>
+  <h3>Metodología aplicada (8 fases)</h3>
+  <ol class="ol-comfy">
+    <li>Levantamiento de requisitos con MALEJA</li>
+    <li>Diseño UX/UI mobile-first</li>
+    <li>Setup técnico (dominio/hosting/SSL/BD)</li>
+    <li>Desarrollo iterativo (catálogo → admin → WhatsApp)</li>
+    <li>Pruebas funcionales y de usabilidad</li>
+    <li>Carga inicial de productos y contenido</li>
+    <li>Despliegue en producción + capacitación</li>
+    <li>Medición inicial y ajustes rápidos</li>
+  </ol>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 12: Imagen — Metodología -->
+<!-- ======================================= -->
+<section>
+  <h2>Metodología (visual)</h2>
+  <div class="block-center">
+    <div class="image-card contain portrait" data-ar="2:3">
+      <img src="assets/images/metodologia-adso.svg"
+          alt="Diagrama de flujo metodología ADSO"
           class="zoomable"
-          data-caption="Metodología iterativa con validación continua y mejora basada en métricas - programa ADSO SENA"
+          data-caption="Iteración, validación continua y mejora basada en métricas"
           data-fit="contain"
           width="800" height="1200"
           loading="lazy" decoding="async">
-      </div>
-      <p class="caption">Metodología iterativa con validación continua y mejora basada en métricas</p>
     </div>
+    <p class="caption">Metodología iterativa — ADSO SENA</p>
   </div>
 </section>
 
 <!-- ======================================= -->
-<!-- 5) PROTOTIPO (PMV FUNCIONAL) -->
+<!-- SLIDE 13: Prototipo — Homepage -->
 <!-- ======================================= -->
-<section class="pmv-prototipo">
-  <h2>5. Prototipo del proyecto (PMV funcional)</h2>
-
-  <!-- 2x2 iguales -->
-  <div class="grid-2x2">
-    <div class="card">
-      <div class="image-card" data-ar="3:2">
-        <img src="assets/images/homepage.png"
-             alt="Homepage MALEJA Calzado"
-             class="zoomable"
-             data-caption="Homepage - Vista principal con navegación limpia y acceso directo al catálogo"
-             width="1200" height="800" loading="lazy" decoding="async">
-      </div>
-      <p class="caption">
-        <span class="cap-ttl">Homepage</span><br>
-        <span class="cap-sub">Vista principal con navegación</span>
-      </p>
+<section>
+  <h2>5. Prototipo del proyecto — Homepage</h2>
+  <div class="block-center">
+    <div class="image-card" data-ar="1:1">
+      <img src="assets/images/homepage.png"
+          alt="Homepage MALEJA Calzado"
+          class="zoomable"
+          data-caption="Homepage — navegación limpia y acceso al catálogo"
+          width="1200" height="800"
+          loading="lazy" decoding="async">
     </div>
-
-    <div class="card">
-      <div class="image-card" data-ar="3:2">
-        <img src="assets/images/catalogo-filtros.png"
-             alt="Catálogo de productos MALEJA"
-             class="zoomable"
-             data-caption="Catálogo de productos - Filtros por categoría, talla y precio con búsqueda en tiempo real"
-             width="1200" height="800" loading="lazy" decoding="async">
-      </div>
-      <p class="caption">
-        <span class="cap-ttl">Catálogo</span><br>
-        <span class="cap-sub">Productos con filtros activos</span>
-      </p>
-    </div>
-
-    <div class="card">
-      <!-- Forzamos 3:2 en la miniatura para igualar altura (lightbox abre completo) -->
-      <div class="image-card" data-ar="3:2">
-        <img src="assets/images/modal-producto.png"
-             alt="Modal de detalle de producto"
-             class="zoomable"
-             data-caption="Modal de detalle - Galería, info completa y botón WhatsApp"
-             width="800" height="1200" loading="lazy" decoding="async">
-      </div>
-      <p class="caption">
-        <span class="cap-ttl">Detalle producto</span><br>
-        <span class="cap-sub">Modal con botón WhatsApp</span>
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="image-card" data-ar="3:2">
-        <img src="assets/images/panel-admin.png"
-             alt="Panel administrativo MALEJA"
-             class="zoomable"
-             data-caption="Panel administrativo - CRUD de productos, subida de imágenes y configuración"
-             width="1200" height="800" loading="lazy" decoding="async">
-      </div>
-      <p class="caption">
-        <span class="cap-ttl">Panel administrativo</span><br>
-        <span class="cap-sub">CRUD de productos con interfaz limpia</span>
-      </p>
-    </div>
+    <p class="caption">Vista principal del sitio</p>
   </div>
+</section>
 
-  <!-- Vertical centrada abajo -->
-  <div class="single-center">
+<!-- ======================================= -->
+<!-- SLIDE 14: Prototipo — Catálogo con filtros -->
+<!-- ======================================= -->
+<section>
+  <h2>Prototipo — Catálogo con filtros</h2>
+  <div class="block-center">
+    <div class="image-card" data-ar="1:1">
+      <img src="assets/images/catalogo-filtros.png"
+          alt="Catálogo con filtros"
+          class="zoomable"
+          data-caption="Filtros por categoría, talla y precio con búsqueda en tiempo real"
+          width="1200" height="800"
+          loading="lazy" decoding="async">
+    </div>
+    <p class="caption">Catálogo — Filtros activos</p>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 15: Prototipo — Modal de producto -->
+<!-- ======================================= -->
+<section>
+  <h2>Prototipo — Detalle de producto</h2>
+  <div class="block-center">
+    <div class="image-card" data-ar="1:1">
+      <img src="assets/images/modal-producto.png"
+          alt="Modal de detalle de producto"
+          class="zoomable"
+          data-caption="Galería, información y botón WhatsApp"
+          width="1200" height="800"
+          loading="lazy" decoding="async">
+    </div>
+    <p class="caption">Modal de producto con CTA a WhatsApp</p>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 16: Prototipo — Panel administrativo -->
+<!-- ======================================= -->
+<section>
+  <h2>Prototipo — Panel administrativo</h2>
+  <div class="block-center">
+    <div class="image-card" data-ar="1:1">
+      <img src="assets/images/panel-admin.png"
+          alt="Panel administrativo MALEJA"
+          class="zoomable"
+          data-caption="CRUD de productos, carga de imágenes y configuración"
+          width="1200" height="800"
+          loading="lazy" decoding="async">
+    </div>
+    <p class="caption">Panel admin — CRUD de productos</p>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 17: Prototipo — Responsive móvil -->
+<!-- ======================================= -->
+<section>
+  <h2>Prototipo — Responsive móvil</h2>
+  <div class="block-center">
     <div class="image-card contain portrait" data-ar="2:3">
       <img src="assets/images/mobile-responsive.png"
-           alt="Vista móvil responsive del sitio"
-           class="zoomable"
-           data-caption="Vista móvil responsive — navegación touch-friendly y optimización para móviles"
-           width="800" height="1200" loading="lazy" decoding="async">
+          alt="Vista móvil responsive"
+          class="zoomable"
+          data-caption="Navegación touch-friendly y tiempos de carga rápidos"
+          width="800" height="1200"
+          loading="lazy" decoding="async">
     </div>
-    <p class="caption">
-      <span class="cap-ttl">Responsive móvil</span><br>
-      <span class="cap-sub">Optimización para dispositivos móviles</span>
-    </p>
+    <p class="caption">Optimizado para dispositivos móviles</p>
   </div>
 </section>
 
 <!-- ======================================= -->
-<!-- 6) DEMO EN VIVO -->
+<!-- SLIDE 18: Demo en vivo -->
 <!-- ======================================= -->
 <section class="demo-section">
-  <h2>Demo en vivo</h2>
-  <p class="muted" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-    PMV funcional desplegado en producción:
-  </p>
+  <h2>6. Demo en vivo</h2>
+  <p class="muted" style="font-size:1.05rem;margin-bottom:1.25rem;">PMV funcional desplegado en producción:</p>
   <div class="demo-wrapper">
-    <iframe class="demo" src="https://malejacalzado.com" 
-            title="Demo MALEJA Calzado"
-            loading="lazy"></iframe>
+    <iframe class="demo"
+        src="https://malejacalzado.com"
+        title="Demo MALEJA Calzado"
+        loading="lazy"></iframe>
   </div>
   <div class="demo-actions">
     <a class="btn" href="https://malejacalzado.com" target="_blank" rel="noreferrer">Abrir sitio completo</a>
     <a class="btn-outline" href="https://malejacalzado.com/admin/login.php" target="_blank" rel="noreferrer">Ver panel admin</a>
   </div>
 </section>
+
 <!-- ======================================= -->
-<!-- 7) VALIDACIÓN INICIAL -->
+<!-- SLIDE 19: Validación inicial (Métricas) -->
 <!-- ======================================= -->
 <section>
-  <h2>Validación inicial (PMV en funcionamiento)</h2>
+  <h2>7. Validación inicial — Métricas</h2>
   <div class="grid-3 kpi-grid">
     <div class="kpi">
       <div class="v">✅ 100%</div>
-      <div>Funcionalidades core implementadas y operativas</div>
+      <div>Funcionalidades core implementadas</div>
     </div>
     <div class="kpi">
       <div class="v">&lt; 2s</div>
-      <div>Tiempo de carga promedio (medido con GTmetrix)</div>
+      <div>Tiempo de carga promedio (GTmetrix)</div>
     </div>
     <div class="kpi">
       <div class="v">SSL + A11y</div>
       <div>Seguridad y accesibilidad validadas</div>
     </div>
   </div>
-  
-  <div class="grid-2 mt-30">
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 20: Validación inicial (Estado + Próximos pasos) -->
+<!-- ======================================= -->
+<section>
+  <h2>7. Validación inicial — Estado y próximos pasos</h2>
+  <div class="grid-2">
     <div class="box">
       <h3>Estado actual validado</h3>
       <ul>
@@ -347,10 +452,10 @@
 </section>
 
 <!-- ======================================= -->
-<!-- 8) MODELO DE NEGOCIO -->
+<!-- SLIDE 21: Modelo de negocio -->
 <!-- ======================================= -->
 <section>
-  <h2>Modelo de negocio (PMV)</h2>
+  <h2>8. Modelo de negocio (PMV)</h2>
   <div class="grid-2">
     <div class="box">
       <h3>Inversión real del PMV</h3>
@@ -366,11 +471,10 @@
     </div>
     <div class="box">
       <h3>Proyección si se valida</h3>
-      <p><strong>Escalamiento comercial:</strong></p>
       <ul>
         <li>Servicios similares: $800k - $2M</li>
-        <li>Tiempo implementación: 3-6 semanas</li>
-        <li>ROI proyectado: 300-500%</li>
+        <li>Tiempo de implementación: 3–6 semanas</li>
+        <li>ROI proyectado: 300–500%</li>
         <li>Market fit: microempresas Valle del Cauca</li>
       </ul>
     </div>
@@ -378,10 +482,10 @@
 </section>
 
 <!-- ======================================= -->
-<!-- 9) WHATSAPP-COMMERCE -->
+<!-- SLIDE 22: Innovación — WhatsApp-Commerce (texto) -->
 <!-- ======================================= -->
 <section class="whatsapp-commerce">
-  <h2>Innovación: WhatsApp-Commerce</h2>
+  <h2>9. Innovación: WhatsApp-Commerce</h2>
   <div class="grid-2">
     <div class="box">
       <h3>Flujo de conversión</h3>
@@ -394,27 +498,39 @@
       </ol>
       <p class="muted">Reduce fricción entre interés y contacto</p>
       <div class="highlight-box">
-        <strong>Conversión directa:</strong> De navegación web a chat personal en 1 click
+        <strong>Conversión directa:</strong> de navegación web a chat personal en 1 click
       </div>
     </div>
-
-    <div class="media-col">
-      <div class="image-card square">
-        <img src="assets/images/flujo-whatsapp.png"
-             alt="Flujo WhatsApp MALEJA"
-             class="zoomable"
-             data-caption="Flujo WhatsApp 1:1 - mensaje prellenado y conversación real"
-             width="1080" height="1080" loading="lazy" decoding="async">
-      </div>
+    <div class="box">
+      <h3>Objetivo</h3>
+      <p>Maximizar conversaciones reales y medir su impacto en ventas.</p>
     </div>
   </div>
 </section>
 
 <!-- ======================================= -->
-<!-- 10) ROADMAP -->
+<!-- SLIDE 23: Imagen — Flujo WhatsApp -->
 <!-- ======================================= -->
 <section>
-  <h2>Roadmap de evolución</h2>
+  <h2>Flujo WhatsApp (visual)</h2>
+  <div class="block-center">
+    <div class="image-card square" data-ar="1:1">
+      <img src="assets/images/flujo-whatsapp.png"
+          alt="Flujo WhatsApp MALEJA"
+          class="zoomable"
+          data-caption="Flujo 1:1 — mensaje prellenado y conversación real"
+          width="1080" height="1080"
+          loading="lazy" decoding="async">
+    </div>
+    <p class="caption">De producto a conversación en un paso</p>
+  </div>
+</section>
+
+<!-- ======================================= -->
+<!-- SLIDE 24: Roadmap -->
+<!-- ======================================= -->
+<section>
+  <h2>10. Roadmap de evolución</h2>
   <div class="grid-3">
     <div class="box">
       <h3>✅ Fase 1 (PMV)</h3>
@@ -427,17 +543,17 @@
       <p class="muted">Estado: <strong class="ok">Completado</strong></p>
     </div>
     <div class="box">
-      <h3>🔄 Fase 2 (Si se valida)</h3>
+      <h3>🔄 Fase 2 (si se valida)</h3>
       <ul>
         <li>Sistema de pagos online</li>
         <li>Carrito de compras</li>
         <li>Gestión de inventario</li>
         <li>Analítica avanzada</li>
       </ul>
-      <p class="muted">Dependiente de métricas PMV</p>
+      <p class="muted">Dependiente de métricas del PMV</p>
     </div>
     <div class="box">
-      <h3>🚀 Fase 3 (Escalamiento)</h3>
+      <h3>🚀 Fase 3 (escalamiento)</h3>
       <ul>
         <li>Marketplace multi-vendor</li>
         <li>App móvil nativa</li>
@@ -450,10 +566,10 @@
 </section>
 
 <!-- ======================================= -->
-<!-- 11) CONCLUSIONES Y CIERRE -->
+<!-- SLIDE 25: Conclusiones -->
 <!-- ======================================= -->
 <section>
-  <h2>Conclusiones del PMV</h2>
+  <h2>11. Conclusiones del PMV</h2>
   <div class="grid-2">
     <div class="box">
       <h3>Validación inicial exitosa</h3>
@@ -476,11 +592,14 @@
   </div>
   <div class="box mt-30">
     <h3>Próximo paso crítico</h3>
-    <p class="lead">Medir conversión real con usuarios de MALEJA durante 30 días para validar hipótesis de negocio y decidir escalamiento.</p>
+    <p class="lead">Medir conversión real con usuarios de MALEJA durante 30 días para decidir escalamiento.</p>
   </div>
 </section>
 
-<section class="hero-section" data-background-gradient="linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)">
+<!-- ======================================= -->
+<!-- SLIDE 26: Información de contacto -->
+<!-- ======================================= -->
+<section class="hero-section" data-background-gradient="linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)">
   <div class="hero__end">
     <h2>PMV MALEJA Calzado</h2>
     <p class="subtitle">Producto Mínimo Viable funcional • Tecnología ADSO • SENA</p>
@@ -488,7 +607,6 @@
       <a class="btn" href="https://malejacalzado.com" target="_blank" rel="noreferrer">Ver PMV en vivo</a>
       <a class="btn-outline" href="mailto:williamppmm@hotmail.com" rel="noreferrer">Contacto</a>
     </div>
-
     <div class="grid-2 end-meta">
       <div>
         <p class="muted"><strong>Desarrollador:</strong> William Pérez</p>
@@ -497,42 +615,19 @@
       </div>
       <div>
         <p class="muted"><strong>Programa:</strong> Tecnología ADSO</p>
-        <p class="muted"><strong>Centro:</strong> CGMLTI - SENA</p>
+        <p class="muted"><strong>Centro:</strong> CGMLTI — SENA</p>
         <p class="muted"><strong>Estado:</strong> PMV en producción</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Reveal.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.2/reveal.min.js"></script>
-<script>
-  Reveal.initialize({
-    hash: true,
-    slideNumber: true,
-    transition: 'slide',
-    backgroundTransition: 'fade',
-    controls: true,
-    progress: true,
-    center: false,
-    width: 1280,
-    height: 720,
-    margin: 0.06,
-    controlsLayout: 'bottom-right',
-    controlsBackArrows: 'faded'
-  });
+</div>
+</div>
 
-  // Toggle Tema Claro/Oscuro (preparado para styles.css)
-  const toggle = document.getElementById('themeToggle');
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      const isLight = document.body.classList.toggle('theme-light');
-      toggle.setAttribute('aria-pressed', String(isLight));
-    });
-  }
-</script>
-
-<!-- Lightbox -->
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+<script src="presentation.js"></script>
 <script src="lightbox.js"></script>
 </body>
 </html>

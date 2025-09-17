@@ -1,26 +1,24 @@
 /**
- * LIGHTBOX OPTIMIZADO PARA REVEAL.JS
- * Evita conflictos con navegación de presentación
+ * LIGHTBOX OPTIMIZADO PARA PRESENTACIÓN MALEJA CALZADO
+ * Compatible con Reveal.js y diseño visual consistente
  */
 
-class OptimizedLightbox {
+class PresentationLightbox {
   constructor() {
     this.isOpen = false;
-    this.currentImage = null;
     this.overlay = null;
+    this.isInitialized = false;
     
     this.init();
   }
 
   init() {
-    // Crear overlay una sola vez
+    // Evitar doble inicialización
+    if (this.isInitialized) return;
+    this.isInitialized = true;
+
     this.createOverlay();
-    
-    // Agregar event listeners
     this.addEventListeners();
-    
-    // Prevenir conflictos con Reveal.js
-    this.setupRevealIntegration();
   }
 
   createOverlay() {
@@ -32,23 +30,32 @@ class OptimizedLightbox {
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(44, 62, 80, 0.95);
       z-index: 9999;
       display: none;
       justify-content: center;
       align-items: center;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     `;
 
-    // Contenedor de imagen
-    const imageContainer = document.createElement('div');
-    imageContainer.style.cssText = `
+    // Contenedor principal
+    const container = document.createElement('div');
+    container.className = 'lightbox-container';
+    container.style.cssText = `
       position: relative;
       max-width: 90vw;
       max-height: 90vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 2rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     `;
 
     // Imagen principal
@@ -56,36 +63,44 @@ class OptimizedLightbox {
     img.className = 'lightbox-image';
     img.style.cssText = `
       max-width: 100%;
-      max-height: 85vh;
+      max-height: 75vh;
       object-fit: contain;
       border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
+      transition: transform 0.3s ease;
     `;
 
     // Caption
     const caption = document.createElement('div');
     caption.className = 'lightbox-caption';
     caption.style.cssText = `
-      color: white;
+      color: #2c3e50;
       text-align: center;
-      margin-top: 1rem;
-      padding: 0 2rem;
-      font-size: 1rem;
-      line-height: 1.4;
-      max-width: 800px;
+      margin-top: 1.5rem;
+      padding: 0 1rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.5;
+      max-width: 600px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     `;
 
-    // Botón cerrar
+    // Botón cerrar mejorado
     const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '×';
+    closeBtn.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    `;
+    closeBtn.className = 'lightbox-close';
     closeBtn.style.cssText = `
       position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.2);
+      top: -10px;
+      right: -10px;
+      background: #e74c3c;
       border: none;
       color: white;
-      font-size: 2rem;
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -93,37 +108,51 @@ class OptimizedLightbox {
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+      z-index: 10001;
     `;
 
+    // Hover effects para el botón
     closeBtn.addEventListener('mouseenter', () => {
-      closeBtn.style.background = 'rgba(255,255,255,0.3)';
+      closeBtn.style.transform = 'scale(1.1)';
+      closeBtn.style.background = '#c0392b';
+      closeBtn.style.boxShadow = '0 6px 20px rgba(231, 76, 60, 0.4)';
     });
 
     closeBtn.addEventListener('mouseleave', () => {
-      closeBtn.style.background = 'rgba(255,255,255,0.2)';
+      closeBtn.style.transform = 'scale(1)';
+      closeBtn.style.background = '#e74c3c';
+      closeBtn.style.boxShadow = '0 4px 12px rgba(231, 76, 60, 0.3)';
     });
 
-    // Ensamblar
-    imageContainer.appendChild(img);
-    imageContainer.appendChild(caption);
-    this.overlay.appendChild(imageContainer);
-    this.overlay.appendChild(closeBtn);
+    // Ensamblar elementos
+    container.appendChild(img);
+    container.appendChild(caption);
+    container.appendChild(closeBtn);
+    this.overlay.appendChild(container);
     document.body.appendChild(this.overlay);
 
-    // Event listeners para cerrar
-    closeBtn.addEventListener('click', () => this.close());
+    // Event listener para cerrar (solo en el botón)
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.close();
+    });
+
+    // Cerrar al hacer clic en el overlay (fondo)
     this.overlay.addEventListener('click', (e) => {
-      if (e.target === this.overlay) this.close();
+      if (e.target === this.overlay) {
+        this.close();
+      }
     });
   }
 
   addEventListeners() {
-    // Delegar eventos para imágenes con clase 'zoomable'
+    // Event delegation para imágenes zoomables
     document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('zoomable')) {
+      if (e.target.classList.contains('zoomable') && !this.isOpen) {
         e.preventDefault();
-        e.stopPropagation(); // Evitar que Reveal.js capture el click
+        e.stopPropagation();
         this.open(e.target);
       }
     });
@@ -136,52 +165,77 @@ class OptimizedLightbox {
         this.close();
       }
     });
-  }
 
-  setupRevealIntegration() {
-    // Pausar Reveal.js cuando lightbox esté abierto
+    // Prevenir navegación de Reveal.js cuando lightbox está abierto
     document.addEventListener('keydown', (e) => {
-      if (this.isOpen) {
-        // Bloquear navegación de Reveal.js cuando lightbox está abierto
-        if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space'].includes(e.code)) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
+      if (this.isOpen && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space', 'PageUp', 'PageDown'].includes(e.code)) {
+        e.preventDefault();
+        e.stopPropagation();
       }
-    }, true); // Captura en fase de captura
+    }, true);
   }
 
   open(imgElement) {
     if (this.isOpen) return;
 
     this.isOpen = true;
-    this.currentImage = imgElement;
 
-    // Actualizar imagen en lightbox
+    // Actualizar contenido
     const lightboxImg = this.overlay.querySelector('.lightbox-image');
     const lightboxCaption = this.overlay.querySelector('.lightbox-caption');
 
     lightboxImg.src = imgElement.src;
     lightboxImg.alt = imgElement.alt;
 
-    // Usar data-caption si existe, sino usar alt
-    const captionText = imgElement.getAttribute('data-caption') || imgElement.alt;
+    // Detectar si es SVG y aplicar estilos específicos
+    const isSVG = imgElement.src.toLowerCase().includes('.svg') || 
+                  imgElement.src.toLowerCase().includes('image/svg');
+    
+    if (isSVG) {
+      // Estilos específicos para SVG
+      lightboxImg.style.cssText = `
+        width: 85vw;
+        height: 75vh;
+        max-width: 1200px;
+        max-height: 800px;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
+        transition: transform 0.3s ease;
+        background: white;
+        padding: 1rem;
+      `;
+    } else {
+      // Estilos para PNG/JPG (originales)
+      lightboxImg.style.cssText = `
+        max-width: 100%;
+        max-height: 75vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
+        transition: transform 0.3s ease;
+      `;
+    }
+
+    // Caption desde data-caption o alt
+    const captionText = imgElement.getAttribute('data-caption') || imgElement.alt || '';
     lightboxCaption.textContent = captionText;
 
-    // Mostrar overlay con animación
+    // Mostrar con animación suave
     this.overlay.style.display = 'flex';
-    this.overlay.style.opacity = '0';
+    
+    // Forzar reflow antes de animar
+    this.overlay.offsetHeight;
     
     requestAnimationFrame(() => {
-      this.overlay.style.transition = 'opacity 0.3s ease';
       this.overlay.style.opacity = '1';
     });
 
     // Prevenir scroll del body
     document.body.style.overflow = 'hidden';
 
-    // Notificar a Reveal.js que pause la presentación
-    if (window.Reveal) {
+    // Pausar Reveal.js
+    if (window.Reveal && typeof window.Reveal.configure === 'function') {
       window.Reveal.configure({ keyboard: false });
     }
   }
@@ -192,33 +246,49 @@ class OptimizedLightbox {
     this.isOpen = false;
 
     // Animar salida
-    this.overlay.style.transition = 'opacity 0.3s ease';
     this.overlay.style.opacity = '0';
 
     setTimeout(() => {
       this.overlay.style.display = 'none';
       
-      // Restaurar scroll del body
+      // Restaurar scroll
       document.body.style.overflow = '';
 
       // Reactivar Reveal.js
-      if (window.Reveal) {
+      if (window.Reveal && typeof window.Reveal.configure === 'function') {
         window.Reveal.configure({ keyboard: true });
       }
     }, 300);
   }
 }
 
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', () => {
-  new OptimizedLightbox();
-});
+// Inicialización segura
+function initLightbox() {
+  if (!window.presentationLightbox) {
+    window.presentationLightbox = new PresentationLightbox();
+  }
+}
 
-// También inicializar si Reveal.js ya está cargado
+// Múltiples puntos de inicialización para asegurar funcionamiento
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLightbox);
+} else {
+  initLightbox();
+}
+
+// Integración con Reveal.js
 if (window.Reveal) {
-  Reveal.addEventListener('ready', () => {
-    if (!window.lightboxInstance) {
-      window.lightboxInstance = new OptimizedLightbox();
+  if (typeof Reveal.addEventListener === 'function') {
+    Reveal.addEventListener('ready', initLightbox);
+  }
+} else {
+  // Esperar a que Reveal.js se cargue
+  const checkReveal = setInterval(() => {
+    if (window.Reveal) {
+      clearInterval(checkReveal);
+      if (typeof Reveal.addEventListener === 'function') {
+        Reveal.addEventListener('ready', initLightbox);
+      }
     }
-  });
+  }, 100);
 }
